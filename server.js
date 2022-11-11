@@ -1,10 +1,21 @@
+// require("dotenv").config();
+// const express = require("express");
+// const jwt = require("jsonwebtoken");
+// const auth = require("./middlewares/auth");
+// const fs = require("fs");
 const port = 3000;
+
 let a = 0,
     b = 0;
 let totalA = 0;
 let totalB = 0;
 let totalVotes = 0;
 const qId = "sefwqrqergerg";
+
+// const app = express();
+
+// app.use(express.json());
+
 const io = require("socket.io")(port, {
     cors: {
         origin: ["http://localhost:5173", ["http://127.0.0.1:5173"]],
