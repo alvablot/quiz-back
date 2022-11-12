@@ -30,13 +30,11 @@ const io = require("socket.io")(port, {
 
 io.on("connection", (socket) => {
     socket.on("sendQuestion", (questionString, codeString) => {
-        //reset();
         io.emit("recieveQuestion", questionString, codeString);
     });
 
     function reset() {
         (a = 0), (b = 0), (totalA = 0), (totalB = 0), (totalVotes = 0);
-        //io.emit("reset");
     }
 
     socket.on("reset", () => {
@@ -60,7 +58,8 @@ io.on("connection", (socket) => {
     socket.on("login", (password) => {
         const accessToken = jwt.sign(users[0], process.env.SECRET_KEY);
         const decoded = jwt.verify(accessToken, process.env.SECRET_KEY);
-        if (decoded.password === loginPassword) {
+
+        if (decoded.password === password) {
             io.emit("token", accessToken);
         } else io.emit("token", 404);
     });
